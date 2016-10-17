@@ -2,7 +2,7 @@ from lxml import html
 import requests
 import sys
 
-if (len(sys.argv) < 2) :
+if (len(sys.argv) < 2):
     print("Usage: python rtpi.py <stop_number>")
     exit(0)
 
@@ -15,7 +15,7 @@ tree = html.fromstring(page.content)
 dirty = tree.xpath('//table[@id="rtpi-results"]/child::*/child::*/child::text()')
 times = [s.strip() for s in dirty]
 
-# times no looks something like this: ['Route', 'Destination', 'Expected Time',
+# times now looks something like this: ['Route', 'Destination', 'Expected Time',
 #'Notes', '15b', 'Benson Street via Rathmines', '20:57', '', '', '', '', '15b',
 #'Benson Street via Rathmines', '21:28', '', '', '', '']
 # this next part cleans it so we just have bus number, destination and time
@@ -25,12 +25,22 @@ i = 4
 while(1):
     if (i >= len(times)):
         break
-    info.append(times[i])
-    info.append(times[i+1])
-    info.append(times[i+2])
-    i += 7
+    if (times[i] != ''):
+        info.append(times[i])
+    i += 1
 
-print(info)
+#print(info)
+
+headings = '{:<8}{:<40}{:<8}\n'.format('Route', 'Destination', 'Expected time')
+print(headings)
+i = 0
+while(1):
+    if (i >= len(info)):
+        break
+    row = '{:<8}{:<40}{:<8}'.format(info[i],info[i+1],info[i+2])
+    print(row)
+    i += 3
+
 # <table id="rtpi-results" cellspacing="0">
 #                                 <tbody><tr class="yellow">
 #                                     <th width="10%">
