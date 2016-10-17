@@ -18,11 +18,11 @@ path = '//tr[@class="odd"]/td[position()<4]/text() | ' + \
 dirty = tree.xpath(path)
 times = [s.strip() for s in dirty]
 
-headings = '{:<8}{:<40}{:<8}\n'.format('Route', 'Destination', 'Expected time')
+headings = '{:<8}{:<50}{:<8}\n'.format('Route', 'Destination', 'Expected time')
 print(headings)
 
 i = 0
 while(i<len(times)):
-    row = '{:<8}{:<40}{:<8}'.format(times[i],times[i+1],times[i+2])
+    row = '{:<8}{:<50}{:<8}'.format(times[i],times[i+1],times[i+2])
     print(row)
     i += 3
