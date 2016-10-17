@@ -1,3 +1,4 @@
+# Author: Diarmaid Clancy, <diarmaid@mrcelticfox.com>
 from lxml import html
 import requests
 import sys
