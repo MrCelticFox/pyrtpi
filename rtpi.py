@@ -22,21 +22,16 @@ times = [s.strip() for s in dirty]
 # TODO: use a better xpath query to avoid most of this
 info = []
 i = 4
-while(1):
-    if (i >= len(times)):
-        break
+while(i<len(times)):
     if (times[i] != ''):
         info.append(times[i])
     i += 1
 
-#print(info)
-
 headings = '{:<8}{:<40}{:<8}\n'.format('Route', 'Destination', 'Expected time')
 print(headings)
+
 i = 0
-while(1):
-    if (i >= len(info)):
-        break
+while(i<len(info)):
     row = '{:<8}{:<40}{:<8}'.format(info[i],info[i+1],info[i+2])
     print(row)
     i += 3
